@@ -3,7 +3,7 @@ import { RecuperarCategoriaProps } from "@modules/catalogo/domain/categoria/cate
 import { CategoriaMap } from "@modules/catalogo/mappers/categoria.map";
 import { DomainException } from "@shared/domain/domain.exception";
 import { readFile, writeFile } from "fs";
-
+ 
 try {
 
     ///////////////////
