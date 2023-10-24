@@ -1,12 +1,35 @@
+import { Categoria } from "@modules/catalogo/domain/categoria/categoria.entity";
 import { PrismaClient  } from "@prisma/client";
 import { DomainException } from "@shared/domain/domain.exception";
-import { Console, error } from "console";
+
  
  const prisma = new PrismaClient();
 
  async function main() {
+
+
+   ////////////////////////
+   ///Criar Categoria/////
+   //////////////////////
     
-   const ListaCategoria= await prisma.categoria
+   let categoria: Categoria;
+   categoria = Categoria.criar({nome:`mesa`})
+    /////////////////////////////////
+    //Persistir Categoria no Banco///
+    /////////////////////////////////
+
+    await prisma.categoria.create({
+      data: {
+         id: categoria.id,
+         nome: categoria.nome
+      }
+    })
+
+     
+    ///Listar Categoria///
+    /////////////////////
+   const ListaCategoria= await prisma.categoria.findMany();
+   console.log(ListaCategoria);
  }
 
  main()
