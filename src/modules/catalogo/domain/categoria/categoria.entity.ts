@@ -1,47 +1,77 @@
-import { CategoriaMap } from "@modules/catalogo/mappers/categoria.map";
+import { CategoriaMap } from "@modules/catalogo/infra/mappers/categoria.map";
 import { Entity } from "@shared/domain/entity";
-import { NomeCategoriaNuloOuIndefinido, NomeCategoriaTamanhoMaximoInvalido, NomeCategoriaTamanhoMinimoInvalido } from "./categoria.exception";
+import { CategoriaExceptions } from "./categoria.exception";
 import { CriarCategoriaProps, ICategoria, RecuperarCategoriaProps } from "./categoria.types";
 
 class Categoria extends Entity<ICategoria> implements ICategoria {
 
     ///////////////////////
-	//Atributos de Classe//
-	///////////////////////
+    //Atributos de Classe//
+    ///////////////////////
 
-	private _nome: string;
+    private _nome: string;
+    private _dataCriacao?: Date | undefined;
+    private _dataAtualizacao?: Date | undefined;
+
+    //////////////
+    //Constantes//
+    //////////////
+
+    public static readonly TAMANHO_MINIMO_NOME = 3;
+    public static readonly TAMANHO_MAXIMO_NOME = 50;
 
     ///////////////
-	//Gets e Sets//
-	///////////////
-   
+    //Gets e Sets//
+    ///////////////
+
     public get nome(): string {
         return this._nome;
     }
 
-    private set nome(value: string) {
-        if (value === null || value === undefined) {
-            throw new NomeCategoriaNuloOuIndefinido();
+    private set nome(nome: string) {
+
+        const tamanhoNome = nome.trim().length;
+
+        if (nome === null || nome === undefined) {
+            throw new CategoriaExceptions.NomeCategoriaNuloOuIndefinido();
         }
 
-        if (value.trim().length < 3) {
-            throw new NomeCategoriaTamanhoMinimoInvalido();
+        if (tamanhoNome < Categoria.TAMANHO_MINIMO_NOME) {
+            throw new CategoriaExceptions.NomeCategoriaTamanhoMinimoInvalido();
         }
 
-        if (value.trim().length > 50) {
-            throw new NomeCategoriaTamanhoMaximoInvalido();
+        if (tamanhoNome > Categoria.TAMANHO_MAXIMO_NOME) {
+            throw new CategoriaExceptions.NomeCategoriaTamanhoMaximoInvalido();
         }
 
-        this._nome = value;
+        this._nome = nome;
+    }
+
+    public get dataCriacao(): Date | undefined {
+        return this._dataCriacao;
+    }
+
+    private set dataCriacao(dataCriacao: Date | undefined) {
+        this._dataCriacao = dataCriacao;
+    }
+
+    public get dataAtualizacao(): Date | undefined {
+        return this._dataAtualizacao;
+    }
+
+    private set dataAtualizacao(dataAtualizacao: Date | undefined) {
+        this._dataAtualizacao = dataAtualizacao;
     }
 
     //////////////
-	//Construtor//
-	//////////////
+    //Construtor//
+    //////////////
 
-    private constructor(categoria:ICategoria){
+    private constructor(categoria: ICategoria) {
         super(categoria.id);
         this.nome = categoria.nome;
+        this.dataCriacao = categoria.dataCriacao;
+        this.dataAtualizacao = categoria.dataAtualizacao;
     }
 
     /////////////////////////
@@ -49,8 +79,7 @@ class Categoria extends Entity<ICategoria> implements ICategoria {
     /////////////////////////
 
     public static criar(props: CriarCategoriaProps): Categoria {
-        let { nome } = props;
-        return new Categoria({ nome });
+        return new Categoria(props);
     }
 
     public static recuperar(props: RecuperarCategoriaProps): Categoria {

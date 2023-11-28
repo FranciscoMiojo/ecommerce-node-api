@@ -1,21 +1,16 @@
-class DomainException extends Error {
-    constructor(message:string = '⚠️ Exceção de domínio genérica') {
+export class DomainException extends Error {
+    constructor(message: string) {
         super(message);
         this.name = 'DomainException';
-        this.message = message;
-        Error.captureStackTrace(this, this.constructor)
-    }
-}
+        this.message = '⚠️ Generic Domain Exception.';
+        Error.captureStackTrace(this, this.constructor);
+    };   
+};
 
-class IDEntityUUIDInvalid extends DomainException {
-    public constructor(message:string = '⚠️ O ID da entidade é um UUID inválido.') {
+export class IDEntityUUIDInvalid extends DomainException {
+    public constructor(message:string = '⚠️ The Entity ID is An Invalid UUID.') {
         super(message);
-        this.name = 'IDEntityUUIDInvalid'
+        this.name = 'IDEntityUUIDInvalid';
         this.message = message;
-    }
-}
-
-export { 
-    DomainException,
-    IDEntityUUIDInvalid
-}
+    };
+};

@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="9aFSi8XyiYPv80Z2Mk90" name="Visão Geral - Domínio">
-        <mxGraphModel dx="666" dy="546" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="529" dy="464" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -81,12 +81,12 @@
         </mxGraphModel>
     </diagram>
     <diagram id="716YB2Dg7-pcS5Y_QKZl" name="Subdomínio - Catálogo">
-        <mxGraphModel dx="1986" dy="932" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1379" dy="464" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="tKfVfG1xGBaXC-HzcsxZ-1" value="Subdomínio - Catálogo" style="shape=umlFrame;whiteSpace=wrap;html=1;width=160;height=20;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;" parent="1" vertex="1">
-                    <mxGeometry x="120" y="20" width="870" height="650" as="geometry"/>
+                    <mxGeometry x="120" y="20" width="870" height="720" as="geometry"/>
                 </mxCell>
                 <mxCell id="yp5IJCPN09S-dbZFv62W-1" value="Administrador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" parent="1" vertex="1">
                     <mxGeometry x="20" y="260" width="30" height="60" as="geometry"/>
@@ -260,6 +260,18 @@
                     <mxGeometry width="160" relative="1" as="geometry">
                         <mxPoint x="370" y="545.3214285714286" as="sourcePoint"/>
                         <mxPoint x="311.63750000000005" y="439.70000000000005" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ffFSG0YANdn3RV1qp9Pw-1" value="" style="shape=ellipse;container=1;horizontal=1;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;html=1;dashed=0;collapsible=0;" vertex="1" parent="1">
+                    <mxGeometry x="300" y="640" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="ffFSG0YANdn3RV1qp9Pw-2" value="Remover Categoria" style="html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rotatable=0;" vertex="1" parent="ffFSG0YANdn3RV1qp9Pw-1">
+                    <mxGeometry y="19.071428571428573" width="120" height="12.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="ffFSG0YANdn3RV1qp9Pw-3" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;dashed=1;entryX=0.651;entryY=1.075;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="ffFSG0YANdn3RV1qp9Pw-1" target="eK-2ITGQcMqE1jckiWE5-1">
+                    <mxGeometry width="160" relative="1" as="geometry">
+                        <mxPoint x="280.64" y="601.4714285714284" as="sourcePoint"/>
+                        <mxPoint x="220.00249999999994" y="440" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
             </root>

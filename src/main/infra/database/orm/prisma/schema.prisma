@@ -10,38 +10,43 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Categoria { 
-  id String @id @db.Uuid
-  nome String @db.VarChar(50)
-  dataCriacao  DateTime @default(now()) @map("data_criacao")
-  dataAtualizacao DateTime @updatedAt @map("data_atualizaçao")
-  produtos CategoriasProdutos[]
+model Category {
+  id              String @id @db.Uuid
+  name            String @db.VarChar(50)
+  dateCreated     DateTime @default(now()) @map("date_created")
+  dateUpdated     DateTime @updatedAt @map("date_updated")
+  products        ProductsCategories[]
 
-@@map("categoria")
+  @@map("categories")
 }
 
-  model CategoriasProdutos {
-    produto Produto @relation(fields: [produtoId], references: [id])
-    produtoId String @db.Uuid @map("produto_id")
-    categoria Categoria @relation(fields: [categoriaId], references: [id])
-    categoriaId String @db.Uuid @map("categoria_id")
-    dataCriacao DateTime @default(now()) @map("data_criacao")
-    dataAtualizacao DateTime @updatedAt @map("data_atualizacao")
+model ProductsCategories {
+  product         Product @relation(fields: [productId], references: [id])
+  productId       String @db.Uuid @map("product_id")
+  category        Category @relation(fields: [categoryId], references: [id])
+  categoryId      String @db.Uuid @map("category_id")
+  dateCreated     DateTime @default(now()) @map("date_created")
+  dateUpdated     DateTime @updatedAt @map("date_updated")
 
-    @@id([produtoId,categoriaId])
-    @@map("produto_categoria ")
-  }
-
-
-
-model Produto {
-  id String @id @db.Uuid
-  nome String @db.VarChar(50)
-  valor Int
-  dataCriacao  DateTime @default(now()) @map("data_criacao")
-  dataAtualizacao DateTime @updatedAt @map("data_atualizaçao")
-  categoria CategoriasProdutos []
-
+  @@id([productId, categoryId])
+  @@map("products_categories")
 }
 
- 
+model Product {
+  id              String @id @db.Uuid
+  name            String @db.VarChar(50)
+  description     String @db.VarChar(200)
+  value           Int
+  dateCreated     DateTime @default(now()) @map("date_created")
+  dateUpdated     DateTime @updatedAt @map("date_updated")
+  dateDeletion    DateTime? @map("date_deletion")
+  status          StatusProductPrisma @default(ACTIVE) @map("status_product")
+  categories      ProductsCategories[]
+
+  @@map("products")
+}
+
+enum StatusProductPrisma {
+  ACTIVE
+  OFF
+}
